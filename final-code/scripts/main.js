@@ -4,7 +4,7 @@
  *  with different authentication requirements like
  *  SignIn
  *  SignOut
- *  GetUserNam
+ *  GetUserName
  *  GetUserUID
  *  
  */
@@ -62,7 +62,7 @@ function loadTransactions() {
     transactionsRef.on('child_added', dislayTransactionCallback);
     transactionsRef.on('child_changed', dislayTransactionCallback);
 
-    // Watch the Walet root for changes
+    // Watch the Wallet root for changes
     var walletRef = firebase.database().ref("/wallet/" + getUserUID());
     walletRef.on('child_added', displayBalanceCallback);
     walletRef.on('child_changed', displayBalanceCallback);
@@ -100,12 +100,13 @@ function updateWalletbalance(amount, type) {
 }
 
 /* Utility Functions
- * All the functions below are utiliy functions 
+ * All the functions below are utility functions 
  * which manipulate UI changes. Need not be modified
  */
 
 function authStateObserver(user) {
-    if (user) { // User is signed in!
+    if (user) { 
+      // User is signed in!
       // Get the signed-in user's name.
       var userName = getUserName();
   
@@ -120,7 +121,8 @@ function authStateObserver(user) {
       signInButtonElement.setAttribute('hidden', 'true');
       loadTransactions();
 
-    } else { // User is signed out!
+    } else { 
+      // User is signed out!
       // Hide user's profile and sign-out button.
       displayNameDivElement.setAttribute('hidden', 'true');
       signOutButtonElement.setAttribute('hidden', 'true');
